@@ -3,10 +3,12 @@ from django.contrib.auth.models import User
 
 
 class Author(models.Model):
+    """update to the model for the favorites"""
     name = models.CharField(max_length=45)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
-
+    favorites = models.ManyToManyField('Recipe', related_name='favorites', blank=True)
+    
     def __str__(self):
         return self.name
 

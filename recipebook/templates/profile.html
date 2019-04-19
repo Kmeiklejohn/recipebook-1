@@ -16,8 +16,13 @@
     </li>
     {% endfor %}
     <li>
-      
-    </li>
+    <div>My favorites</div>
+    <div>
+    {% for fav in favorites %}
+  <li>
+    <a href="../recipe/{{ recipe.id }}">{{ fav.title }}</a>
+  </li>
+  {% endfor %}
     <a href="../../">Index</a>
   </body>
 </html>

@@ -19,19 +19,23 @@ from django.urls import path
 from recipebook.models import Author, Recipe
 from . import views
 
-
 admin.site.register(Author)
 admin.site.register(Recipe)
 
+#comment
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('recipe/<int:recipe_id>/', views.recipe),
+    path('recipe/<int:recipe_id>/', views.recipe, name='recipe'),
     path('author/<int:author_id>/', views.author, name='author'),
     path('author/add/', views.add_author, name='add_author'),
     path('recipe/add/', views.add_recipe, name='recipe/add/'),
-    path('confirmation', views.add_recipe, name='confirmation'),
-    path('login', views.login_view, name='login'),
-    path('logout', views.logout_view, name='logout'),
-    path('error', views.error_view, name='error')
+    path('confirmation/', views.add_recipe, name='confirmation'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('error/', views.error_view, name='error'),
+    path('update/',views.edit_recipe, name='update'),
+    path('profile/', views.profile, name='profile'),
+    path('favorite/<int:recipe_id>', views.favorite, name='favorite')
 ]

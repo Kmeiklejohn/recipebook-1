@@ -22,3 +22,10 @@ class AddRecipe(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField(label='Login Name', max_length=100)
     password = forms.CharField(widget=forms.PasswordInput())
+
+class UpdateForm(forms.Form):
+    """version 2"""
+    title = forms.CharField(max_length=100)
+    description = forms.CharField(widget=forms.Textarea, label='bio')
+    time = forms.IntegerField()
+    instructions = forms.CharField(widget=forms.Textarea)

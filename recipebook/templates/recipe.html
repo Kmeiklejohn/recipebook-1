@@ -8,10 +8,25 @@
   </head>
   <body>
     <div>Title: {{ recipe.title }}</div>
-    <div>Author: <a href='../../author/{{author.id}}'>{{ author.name }} <a></div>
+    <div>Author: <a href="../../author/{{author.id}}">{{ author.name }} <a></div>
     <div>Prep duration, may be quick: {{ recipe.time }}</div>
     <div>description: {{ recipe.description }}</div>
     <div>instructions: {{ recipe.instructions }}</div>
+    {% if request.user.author %}
+    <div>
+      <form action="/favorite/{{ recipe.id }}" method="POST">
+        {% csrf_token %}
+        <input type="submit" name="favorite" value="Favorite" />
+      </form>
+      {{ favorited }}
+    {% endif %}
+    </div>
+    {% if request.user.author == recipe.author %}
+      <form method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Update">
+      </form>
+    {% endif %}
     <a href="../../">Index</a>
   </body>
 </html>
